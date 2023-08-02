@@ -18,7 +18,10 @@ async def run():
     """ Does Offboard control using position NED coordinates. """
 
     drone = System()
-    await drone.connect(system_address="serial:///dev/ttyS0:921600")
+    # For Companion comupter
+    # await drone.connect(system_address="serial:///dev/ttyS0:921600")
+    # For PX4 SITL
+    await drone.connect(system_address="udp://:14540")
 
     print("Waiting for drone to connect...")
     async for state in drone.core.connection_state():
